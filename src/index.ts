@@ -29,27 +29,14 @@ type SearchEventsOptions = {
  * @params options - accepts both Course and StudyGroup as eventType
  */
 function searchEvents(options: SearchEventsOptions) {
-  let events: (Course | StudyGroup)[];
-  if (options.eventType === 'courses') {
-    events = courses;
-  } else {
-    events = studyGroups;
-  }
+  let events: (Course | StudyGroup)[] = options.eventType === 'courses' ? courses : studyGroups;
 
   return events.filter((event) => {
-    if (typeof options.query === 'number') {
-      if (event.id === options.query) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    if (typeof options.query === 'string') {
-      if (event.keywords.includes(options.query)) {
-        return true;
-      } else {
-        return false;
-      }
+    switch (typeof options.query) {
+      case 'number':
+        return event.id === options.query ? true : false;
+      case 'string':
+        return event.keywords.includes(options.query) ? true : false;
     }
   });
 }
