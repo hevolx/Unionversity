@@ -54,6 +54,19 @@ function searchEvents(options: SearchEventsOptions) {
   });
 }
 
+let enrolledEvents: (Course | StudyGroup)[] = []
+
+/**
+ * Takes an event and adds it to a list of our enrolled events.
+ * @params event - can be either a Course or a StudyGroup
+ */
+function enroll(event: Course | StudyGroup) {
+  enrolledEvents = [...enrolledEvents, event]
+}
 
 let searchResults = searchEvents({ query: 'art', eventType: 'courses' });
-console.log(searchResults);
+searchResults.forEach((result) => {
+  enroll(result)
+})
+
+console.log(enrolledEvents);
