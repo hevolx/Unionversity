@@ -26,7 +26,7 @@ type SearchEventsOptions = {
  * Search through lists of courses and study groups and find matching events.
  * NOTE: courses and study groups are referred as “events” when both is being used.
  *
- * @params options - accepts both Course and StudyGroup as eventType
+ * @param options - accepts both Course and StudyGroup as eventType
  */
 function searchEvents(options: SearchEventsOptions) {
   let events: (Course | StudyGroup)[] = options.eventType === 'courses' ? courses : studyGroups;
@@ -45,7 +45,7 @@ let enrolledEvents: (Course | StudyGroup)[] = []
 
 /**
  * Takes an event and adds it to a list of our enrolled events.
- * @params event - can be either a Course or a StudyGroup
+ * @param event - can be either a Course or a StudyGroup
  */
 function enroll(event: Course | StudyGroup) {
   enrolledEvents = [...enrolledEvents, event]
